@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="css\main.css">
+<script type = "text/javascript" src="lookup.js"></script>
+<style>
+body {
+  background-image: url('.\\images\\lolBack.jpg');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  color: white;
+}
+html {
+    height: 100%
+}
+</style>
+</head>
+<body>
+
+<div class="topnav">
+  <a href="home.html">Home</a>
+  <a class="active" href="#LoL">leagueOfLegends</a>
+  <a href="about.html">About</a>
+</div>
+
+<div style="padding-left:16px">
+  <h2>League of Legends Tracker</h2>
+</div>
+
+Name: <input type="text" id="LeagueName" value="Fataldoctor">
+<input type = "button" onclick = "reqLeagueNameInfo()" value = "Search">
+<p id="userNameContent"></p>
+<p id="userNameRankContent"></p>
+<p id="userNameLPContent"></p>
+</html>
