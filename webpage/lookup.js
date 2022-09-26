@@ -1,6 +1,8 @@
+
+//The httpRequestInfo function does a xmlhttp request. This info is then used in conjunction with riot games api
 function httpRequestInfo(reqUrl){
   let puid = "";
-
+//This function is called when the XMLHttpRequest is loaded successfully
   function reqListener () {
       var myArr = JSON.parse(this.responseText);
       let accountName = myArr[0]['summonerName'];
@@ -17,7 +19,7 @@ function httpRequestInfo(reqUrl){
       const userNameLPContent = document.getElementById("userNameLPContent");
       userNameLPContent.textContent = accountName+"has a current LP of : " +accountNameLP;
   }
-
+//This function is called when the XMLHttpRequest errors and is not successfully loaded.
   function reqErrorHandler() {
     username = document.getElementById("LeagueName").value;
     const userNameContent = document.getElementById("userNameContent");
@@ -27,27 +29,29 @@ function httpRequestInfo(reqUrl){
     const userNameLPContent = document.getElementById("userNameLPContent");
     userNameLPContent.textContent = "";
   }
-
+//This function is called when the XMLHttpRequest is loaded successfully
+//No error handler is needed as only valid html links can be provided
   function reqListener1 () {
     var myArr = JSON.parse(this.responseText);
     console.log(myArr);
     let puid = myArr['id']
     let newUrl = 'https://na1.api.riotgames.com/lol/league/v4/entries/by-summoner/'+puid+'?api_key='
-    const req = new XMLHttpRequest();
-    req.addEventListener("load", reqListener);
-    req.open("GET", newUrl);
-    req.send();
+    //creates a new XMLHttpRequest and EventListeners
+    const requestProfileData = new XMLHttpRequest();
+    requestProfileData.addEventListener("load", reqListener);
+    requestProfileData.open("GET", newUrl);
+    requestProfileData.send();
   }
-
-  const req1 = new XMLHttpRequest();
-  req1.addEventListener("load", reqListener1);
-  req1.addEventListener("error", reqErrorHandler);
-  req1.open("GET", reqUrl);
-  req1.send();
+  //creates a new XMLHttpRequest and EventListeners
+  const reqPlayerId = new XMLHttpRequest();
+  reqPlayerId.addEventListener("load", reqListener1);
+  reqPlayerId.addEventListener("error", reqErrorHandler);
+  reqPlayerId.open("GET", reqUrl);
+  reqPlayerId.send();
 
 }
 
-
+//calls httpRequestInfo with a league name supplied by the document getElementById
 function reqLeagueNameInfo()
 {
   username = document.getElementById("LeagueName").value;
