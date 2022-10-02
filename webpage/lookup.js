@@ -4,7 +4,7 @@ function httpRequestInfo(reqUrl){
   let puid = "";
 //This function is called when the XMLHttpRequest is loaded successfully
   function reqListener () {
-      var myArr = JSON.parse(this.responseText);
+      let myArr = JSON.parse(this.responseText);
       let accountName = myArr[0]['summonerName'];
       let accountNameLP = myArr[0]['leaguePoints'];
       let accountNameTier = myArr[0]['tier'];
@@ -32,9 +32,9 @@ function httpRequestInfo(reqUrl){
 //This function is called when the XMLHttpRequest is loaded successfully
 //No error handler is needed as only valid html links can be provided
   function reqListener1 () {
-    var myArr = JSON.parse(this.responseText);
+    let myArr = JSON.parse(this.responseText);
     console.log(myArr);
-    let puid = myArr['id']
+    puid = myArr['id']
     let newUrl = 'https://na1.api.riotgames.com/lol/league/v4/entries/by-summoner/'+puid+'?api_key='
     //creates a new XMLHttpRequest and EventListeners
     const requestProfileData = new XMLHttpRequest();
@@ -54,6 +54,6 @@ function httpRequestInfo(reqUrl){
 //calls httpRequestInfo with a league name supplied by the document getElementById
 function reqLeagueNameInfo()
 {
-  username = document.getElementById("LeagueName").value;
+  let username = document.getElementById("LeagueName").value;
   httpRequestInfo('https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/'+username+'?api_key=');
 }
